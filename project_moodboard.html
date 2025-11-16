@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Breath Behind the Game — Moodboard</title>
+  <style>
+    :root{
+      --bg:#f7fbf6; /* summer field */
+      --ink:#0e2a18; /* deep green text */
+      --muted:#5d7a67; /* sage */
+      --accent:#2fa36b; /* leaf */
+      --card:#ffffff;
+      --glass:rgba(255,255,255,.8);
+      --line:rgba(14,42,24,.10);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#f0faef 0%,var(--bg) 60%);
+      color:var(--ink);
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial
+    }
+
+    /* Shared max-width wrapper (no padding here) */
+    .container{max-width:1080px;margin:0 auto}
+
+    /* HEADER (now shorter + lighter overlay) */
+    header{
+      position:sticky; top:0; z-index:10;
+      background:linear-gradient(180deg,
+                  rgba(247,251,246,.88),
+                  rgba(247,251,246,.55) 50%,
+                  rgba(247,251,246,0) 100%);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line)
+    }
+    header .container{padding:14px 20px;}      /* <-- shrink header here */
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .dot{width:10px;height:10px;border-radius:999px;
+      background:radial-gradient(circle at 35% 35%, #9ef0b7, var(--accent));
+      box-shadow:0 0 14px #9ef0b7}
+    h1{margin:0;font-size:clamp(22px,4vw,36px);letter-spacing:.2px}
+    .tag{color:var(--muted);margin-top:6px}
+
+    /* MAIN spacing (kept your original) */
+    main.container{padding:28px 20px 100px;}
+
+    /* ABOUT */
+    .about{margin:18px 0 10px;border:1px solid var(--line);background:var(--card);
+      border-radius:16px;padding:16px}
+    .about strong{font-weight:700}
+
+    /* GALLERY */
+    .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;margin-top:22px}
+    .tile{grid-column:span 12;position:relative;min-height:360px;border-radius:22px;
+      overflow:hidden;background:var(--card);border:1px solid var(--line);
+      box-shadow:0 10px 26px rgba(47,163,107,.15)}
+    .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.06)}
+    .tile.placeholder{background:linear-gradient(135deg,#eef9ea,#e1f6df)}
+    .caption{
+      position:absolute;left:14px;bottom:14px;max-width:min(420px,86%);
+      background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(6px);
+      border-radius:12px;padding:10px 12px
+    }
+    .caption h3{margin:0 0 6px;font-size:20px}
+    .caption p{margin:0;color:var(--muted)}
+    .caption .cta{margin-top:8px;display:inline-block;padding:8px 12px;border-radius:999px;
+      background:var(--accent);color:#fff;text-decoration:none;font-weight:600;
+      border:1px solid rgba(14,42,24,.15)}
+
+    /* Clamp on-card preview to 2 lines with ellipsis */
+    .caption p.preview{
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+    @media (max-width:540px){ .caption p.preview{-webkit-line-clamp:3;} }
+    @media (min-width:860px){ .tile.half{grid-column:span 6} }
+
+    /* MODAL */
+    dialog{border:none;border-radius:18px;padding:0;background:#f9fdf8;color:var(--ink);
+      max-width:820px;width:92vw;box-shadow:0 24px 60px rgba(47,163,107,.25)}
+    dialog::backdrop{background:rgba(14,42,24,.35);backdrop-filter:blur(2px)}
+    .m-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
+    .m-body{padding:16px;display:grid;gap:12px}
+    .media{aspect-ratio:16/9;border-radius:12px;border:1px dashed var(--line);
+      display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0fbf1,#ecf9ee)}
+    .close{appearance:none;background:transparent;border:1px solid var(--line);border-radius:10px;padding:6px 10px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <h1>The Breath Behind the Game</h1>
+          <div class="tag">How athletes breathe through motion</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ABOUT -->
+    <section class="about">
+      <p><strong>About the project:</strong> Inspired by Edgerton’s high-speed imagery, we look at breath as the quiet engine of sport: the held inhale at impact, then the exhale that lets motion flow. The final piece will be a short, slow-motion film with recorded breathing and brief athlete reflections. Below are exhibit previews — click any tile to view details (video placeholder for now).</p>
+    </section>
+
+    <!-- EXHIBITS -->
+    <section class="gallery" aria-label="Exhibits">
+      <!-- TENNIS -->
+      <article class="tile half" data-exhibit="Tennis">
+        <img src="images/tennis_motion.jpg" alt="Tennis motion reference"/>
+        <div class="caption">
+          <h3>Tennis</h3>
+          <p class="preview"
+             data-full="Preview: This is our friend playing tennis. You can almost feel that split second before contact — the little breath he holds and lets go as the ball leaves the strings. We’ll swap this photo for a slow-motion clip soon. We’ll record his real breath and short reflection on how he finds rhythm.">
+            Preview: This is our friend playing tennis. You can almost feel that split second before contact — the little breath he holds and lets go as the ball leaves the strings. We’ll swap this photo for a slow-motion clip soon. We’ll record his real breath and short reflection on how he finds rhythm.
+          </p>
+          <a class="cta" href="#" data-open>View piece</a>
+        </div>
+      </article>
+
+      <!-- CRICKET -->
+      <article class="tile half" data-exhibit="Cricket">
+        <img src="images/cricket_motion.JPEG" alt="Cricket motion reference"/>
+        <div class="caption">
+          <h3>Cricket</h3>
+          <p class="preview"
+             data-full="Preview: This is Sanil mid-swing. You can see the motion carry through his whole body, the moment where the shot connects and everything exhales at once. We’ll replace this with the real video later. We want to capture the pause before the strike, the build-up of breath that powers the motion.">
+            Preview: This is Sanil mid-swing. You can see the motion carry through his whole body, the moment where the shot connects and everything exhales at once. We’ll replace this with the real video later. We want to capture the pause before the strike, the build-up of breath that powers the motion.
+          </p>
+          <a class="cta" href="#" data-open>View piece</a>
+        </div>
+      </article>
+
+      <!-- FOOTBALL -->
+      <article class="tile half placeholder" data-exhibit="Football">
+        <div class="caption">
+          <h3>Football</h3>
+          <p class="preview"
+             data-full="Preview: We are planning to film a kick in slow motion. That moment right before the strike, all air and energy pull tight, then release in one snap.">
+            Preview: We are planning to film a kick in slow motion. That moment right before the strike, all air and energy pull tight, then release in one snap.
+          </p>
+          <a class="cta" href="#" data-open>View piece</a>
+        </div>
+      </article>
+
+      <!-- ROWING -->
+      <article class="tile half placeholder" data-exhibit="Rowing">
+        <div class="caption">
+          <h3>Rowing</h3>
+          <p class="preview"
+             data-full="Preview: This piece will show the rowers’ breathing syncing with each pull. Inhale on the slide, exhale over the water. We thought rowing was slightly different but really relates to how the body moves with breathing.">
+            Preview: This piece will show the rowers’ breathing syncing with each pull. Inhale on the slide, exhale over the water. We thought rowing was slightly different but really relates to how the body moves with breathing.
+          </p>
+          <a class="cta" href="#" data-open>View piece</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <dialog id="detail">
+    <div class="m-head">
+      <h3 style="margin:0">Exhibit</h3>
+      <button class="close" onclick="detail.close()">Close</button>
+    </div>
+    <div class="m-body">
+      <div class="media" id="mediaSlot">Drop video here later (16:9)</div>
+      <p id="lead">Short continuation text goes here. We’ll replace with the athlete’s reflection and breathing notes for the full piece.</p>
+    </div>
+  </dialog>
+
+  <script>
+    const detail = document.getElementById('detail');
+    const lead = document.getElementById('lead');
+    const slot = document.getElementById('mediaSlot');
+
+    document.querySelectorAll('[data-open]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = e.target.closest('.tile');
+        const title = card.dataset.exhibit;
+        detail.querySelector('.m-head h3').textContent = title;
+
+        // use full paragraph from preview for the modal
+        const previewP = card.querySelector('.caption p.preview');
+        const fullText = (previewP && (previewP.dataset.full || previewP.textContent)) || '';
+        lead.textContent = fullText;
+
+        // media slot
+        slot.innerHTML = '';
+        if (title.toLowerCase().includes('cricket')) {
+          const img = document.createElement('img');
+          img.src = 'images/cricket_motion.JPEG';
+          img.alt = 'Cricket motion — temporary still';
+          img.style.width = '100%';
+          img.style.height = 'auto';
+          img.style.borderRadius = '12px';
+          slot.appendChild(img);
+        } else if (title.toLowerCase().includes('tennis')) {
+          const img = document.createElement('img');
+          img.src = 'images/tennis_motion.jpg';
+          img.alt = 'Tennis motion — temporary still';
+          img.style.width = '100%';
+          img.style.height = 'auto';
+          img.style.borderRadius = '12px';
+          slot.appendChild(img);
+        } else {
+          slot.textContent = 'Video placeholder (16:9)';
+        }
+
+        detail.showModal();
+      });
+    });
+  </script>
+</body>
+</html>
