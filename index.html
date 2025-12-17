@@ -2,222 +2,450 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Breath Behind the Game — Moodboard</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Breath Behind the Game</title>
   <style>
     :root{
-      --bg:#f7fbf6; /* summer field */
-      --ink:#0e2a18; /* deep green text */
-      --muted:#5d7a67; /* sage */
-      --accent:#2fa36b; /* leaf */
-      --card:#ffffff;
-      --glass:rgba(255,255,255,.8);
-      --line:rgba(14,42,24,.10);
+      --bg0:#070b12;
+      --bg1:#0b1220;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --line:rgba(255,255,255,.10);
+      --ink:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --accent:#55f2b7;
+      --accent2:#27d39a;
+      --shadow:0 18px 50px rgba(0,0,0,.45);
+      --radius:22px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      background:linear-gradient(180deg,#f0faef 0%,var(--bg) 60%);
       color:var(--ink);
-      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial
+      font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(85,242,183,.12), transparent 60%),
+        radial-gradient(900px 600px at 85% 35%, rgba(39,211,154,.10), transparent 55%),
+        radial-gradient(700px 500px at 50% 85%, rgba(120,180,255,.06), transparent 60%),
+        linear-gradient(180deg,var(--bg0),var(--bg1));
+      overflow-x:hidden;
     }
 
-    /* Shared max-width wrapper (no padding here) */
-    .container{max-width:1080px;margin:0 auto}
+    .wrap{max-width:980px;margin:0 auto;padding:34px 18px 90px}
 
-    /* HEADER (now shorter + lighter overlay) */
+    /* Header */
     header{
       position:sticky; top:0; z-index:10;
-      background:linear-gradient(180deg,
-                  rgba(247,251,246,.88),
-                  rgba(247,251,246,.55) 50%,
-                  rgba(247,251,246,0) 100%);
-      backdrop-filter:blur(6px);
-      border-bottom:1px solid var(--line)
+      backdrop-filter: blur(12px);
+      background: linear-gradient(180deg, rgba(7,11,18,.78), rgba(7,11,18,.52) 70%, rgba(7,11,18,0));
+      border-bottom:1px solid rgba(255,255,255,.07);
     }
-    header .container{padding:14px 20px;}      /* <-- shrink header here */
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand .dot{width:10px;height:10px;border-radius:999px;
-      background:radial-gradient(circle at 35% 35%, #9ef0b7, var(--accent));
-      box-shadow:0 0 14px #9ef0b7}
-    h1{margin:0;font-size:clamp(22px,4vw,36px);letter-spacing:.2px}
-    .tag{color:var(--muted);margin-top:6px}
-
-    /* MAIN spacing (kept your original) */
-    main.container{padding:28px 20px 100px;}
-
-    /* ABOUT */
-    .about{margin:18px 0 10px;border:1px solid var(--line);background:var(--card);
-      border-radius:16px;padding:16px}
-    .about strong{font-weight:700}
-
-    /* GALLERY */
-    .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:22px;margin-top:22px}
-    .tile{grid-column:span 12;position:relative;min-height:360px;border-radius:22px;
-      overflow:hidden;background:var(--card);border:1px solid var(--line);
-      box-shadow:0 10px 26px rgba(47,163,107,.15)}
-    .tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.06)}
-    .tile.placeholder{background:linear-gradient(135deg,#eef9ea,#e1f6df)}
-    .caption{
-      position:absolute;left:14px;bottom:14px;max-width:min(420px,86%);
-      background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(6px);
-      border-radius:12px;padding:10px 12px
+    .brand{
+      max-width:980px;margin:0 auto;padding:18px 18px 18px;
+      display:flex; gap:14px; align-items:flex-start;
     }
-    .caption h3{margin:0 0 6px;font-size:20px}
-    .caption p{margin:0;color:var(--muted)}
-    .caption .cta{margin-top:8px;display:inline-block;padding:8px 12px;border-radius:999px;
-      background:var(--accent);color:#fff;text-decoration:none;font-weight:600;
-      border:1px solid rgba(14,42,24,.15)}
+    .dot{
+      margin-top:10px;
+      width:10px; height:10px; border-radius:999px;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.85), var(--accent2));
+      box-shadow: 0 0 16px rgba(85,242,183,.35);
+      flex:0 0 auto;
+    }
+    h1{margin:0; font-size:42px; letter-spacing:.2px}
+    .sub{margin-top:10px; color:var(--muted); font-size:20px}
 
-    /* Clamp on-card preview to 2 lines with ellipsis */
-    .caption p.preview{
-      display:-webkit-box;
-      -webkit-line-clamp:2;
-      -webkit-box-orient:vertical;
+    /* Cards */
+    .card{
+      margin-top:20px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
       overflow:hidden;
     }
-    @media (max-width:540px){ .caption p.preview{-webkit-line-clamp:3;} }
-    @media (min-width:860px){ .tile.half{grid-column:span 6} }
+    .cardInner{padding:18px}
 
-    /* MODAL */
-    dialog{border:none;border-radius:18px;padding:0;background:#f9fdf8;color:var(--ink);
-      max-width:820px;width:92vw;box-shadow:0 24px 60px rgba(47,163,107,.25)}
-    dialog::backdrop{background:rgba(14,42,24,.35);backdrop-filter:blur(2px)}
-    .m-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
-    .m-body{padding:16px;display:grid;gap:12px}
-    .media{aspect-ratio:16/9;border-radius:12px;border:1px dashed var(--line);
-      display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f0fbf1,#ecf9ee)}
-    .close{appearance:none;background:transparent;border:1px solid var(--line);border-radius:10px;padding:6px 10px;cursor:pointer}
+    /* About */
+    .about{
+      margin-top:18px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+      padding:18px;
+      color:var(--ink);
+    }
+    .about b{color:rgba(255,255,255,.95)}
+
+    /* Section header */
+    .sectionHead{
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap:14px;
+      padding:18px 18px 12px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .sectionHead h2{margin:0; font-size:30px}
+    .hint{color:var(--muted)}
+
+    /* Carousel layout */
+    .carousel{
+      padding:16px 16px 22px;
+    }
+    .stage{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      min-height: 240px;
+    }
+    .slides{
+      display:flex;
+      width:100%;
+      transition: transform 260ms ease;
+    }
+    .slide{
+      min-width:100%;
+      padding:0;
+      position:relative;
+    }
+
+    /* Video */
+    video{
+      display:block;
+      width:100%;
+      height:auto;
+      max-height: 520px;
+      background:#000;
+      object-fit:cover;
+    }
+
+    /* Caption moved BELOW video (so controls/volume are not blocked) */
+    .caption{
+      position:static;
+      margin:12px 0 0;
+      background:rgba(10,14,20,.72);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      padding:12px 12px;
+      color:rgba(255,255,255,.88);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .cap-label{
+      display:inline-block;
+      margin-right:10px;
+      padding:3px 10px;
+      border-radius:999px;
+      background:rgba(85,242,183,.12);
+      border:1px solid rgba(85,242,183,.25);
+      color:rgba(170,255,230,.95);
+      font-weight:650;
+      letter-spacing:.2px;
+    }
+
+    /* Nav buttons */
+    .navBtn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;height:44px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(10,14,20,.55);
+      color:rgba(255,255,255,.9);
+      display:grid;place-items:center;
+      cursor:pointer;
+      user-select:none;
+      box-shadow: 0 10px 22px rgba(0,0,0,.35);
+    }
+    .navBtn:hover{background: rgba(10,14,20,.72)}
+    .navBtn.prev{left:10px}
+    .navBtn.next{right:10px}
+    .navBtn[disabled]{opacity:.35;cursor:default}
+
+    /* Dots */
+    .dots{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      padding:12px 0 0;
+    }
+    .dotBtn{
+      width:10px;height:10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.12);
+      cursor:pointer;
+    }
+    .dotBtn.active{
+      background: rgba(85,242,183,.9);
+      border-color: rgba(85,242,183,.9);
+      box-shadow: 0 0 14px rgba(85,242,183,.35);
+    }
+
+    /* Text block above carousel */
+    .blurb{
+      padding:18px 18px 0;
+      color:var(--muted);
+      font-size:18px;
+    }
+    .blurb h3{
+      margin:0 0 8px;
+      color:rgba(255,255,255,.92);
+      font-size:28px;
+    }
+    .blurb p{margin:0}
+
+    @media (max-width:520px){
+      h1{font-size:34px}
+      .sub{font-size:18px}
+      .sectionHead h2{font-size:26px}
+      .blurb h3{font-size:24px}
+    }
   </style>
 </head>
+
 <body>
   <header>
-    <div class="container">
-      <div class="brand">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <h1>The Breath Behind the Game</h1>
-          <div class="tag">How athletes breathe through motion</div>
-        </div>
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <div>
+        <h1>The Breath Behind the Game</h1>
+        <div class="sub">Where breath meets movement. Slow moments. Real sound. Athlete reflections.</div>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <!-- ABOUT -->
+  <main class="wrap">
     <section class="about">
-      <p><strong>About the project:</strong> Inspired by Edgerton’s high speed imagery, we look at breath as the quiet engine of sport: the held inhale at impact, then the exhale that lets motion flow. The final piece will be a short, slow motion film with recorded breathing and brief athlete reflections. Below are some piece previews, we will be able to click any tile to view details.</p>
+      <b>About the project:</b> Breath is the quiet engine. We’re collecting slow-motion clips of impact and release across sports, paired with the athletes’ own words. Each sport can have one or two pieces. Swipe between them and listen for the rhythm.
     </section>
 
-    <!-- EXHIBITS -->
-    <section class="gallery" aria-label="Exhibits">
-      <!-- TENNIS -->
-      <article class="tile half" data-exhibit="Tennis">
-        <img src="images/tennis_motion.jpg" alt="Tennis motion reference"/>
-        <div class="caption">
-          <h3>Tennis</h3>
-          <p class="preview"
-             data-full="Preview: This is our friend playing tennis. You can almost feel that split second before contact — the little breath he holds and lets go as the ball leaves the strings. We’ll swap this photo for a slow-motion clip soon. We’ll record his real breath and short reflection on how he finds rhythm.">
-            Preview: This is our friend playing tennis, you can almost feel that split second before contact, the little breath he holds and lets go as the ball leaves the strings. We’ll swap this photo for a slow motion clip soon. We’ll record his real breath and short reflection on how he finds rhythm.
-          </p>
-          <a class="cta" href="#" data-open>View piece</a>
-        </div>
-      </article>
+    <!-- TENNIS -->
+    <section class="card" id="tennis">
+      <div class="sectionHead">
+        <h2>Tennis Serve</h2>
+        <div class="hint">Swipe · 2 pieces</div>
+      </div>
 
-      <!-- CRICKET -->
-      <article class="tile half" data-exhibit="Cricket">
-        <img src="images/cricket_motion.JPEG" alt="Cricket motion reference"/>
-        <div class="caption">
-          <h3>Cricket</h3>
-          <p class="preview"
-             data-full="Preview: This is Sanil mid-swing. You can see the motion carry through his whole body, the moment where the shot connects and everything exhales at once. We’ll replace this with the real video later. We want to capture the pause before the strike, the build-up of breath that powers the motion.">
-            Preview: This is Sanil mid swing. You can see the motion carry through his whole body, the moment where the shot connects and everything exhales at once. We’ll replace this with the real video later. We want to capture the pause before the strike, the buildup of breath that powers the motion.
-          </p>
-          <a class="cta" href="#" data-open>View piece</a>
-        </div>
-      </article>
+      <div class="blurb">
+        <p>This video explores how breath moves with the body through a tennis serve. The inhale lifts and prepares the motion, while the exhale releases power at contact. Breathing shapes the rhythm of the serve, turning force into something controlled and fluid.</p>
+      </div>
 
-      <!-- FOOTBALL -->
-      <article class="tile half placeholder" data-exhibit="Football">
-        <div class="caption">
-          <h3>Football</h3>
-          <p class="preview"
-             data-full="Preview: We are planning to film a kick in slow motion. That moment right before the strike, all air and energy pull tight, then release in one snap.">
-            Preview: We are planning to film a kick in slow motion. That moment right before the strike, all air and energy pull tight, then release in one snap.
-          </p>
-          <a class="cta" href="#" data-open>View piece</a>
-        </div>
-      </article>
+      <div class="carousel" data-carousel>
+        <div class="stage">
+          <button class="navBtn prev" data-prev aria-label="Previous">◀</button>
+          <button class="navBtn next" data-next aria-label="Next">▶</button>
 
-      <!-- ROWING -->
-      <article class="tile half placeholder" data-exhibit="Rowing">
-        <div class="caption">
-          <h3>Rowing</h3>
-          <p class="preview"
-             data-full="Preview: This piece will show the rowers’ breathing syncing with each pull. Inhale on the slide, exhale over the water. We thought rowing was slightly different but really relates to how the body moves with breathing.">
-            Preview: This piece will show the rowers’ breathing syncing with each pull. Inhale on the slide, exhale over the water. We thought rowing was slightly different but really relates to how the body moves with breathing.
-          </p>
-          <a class="cta" href="#" data-open>View piece</a>
+          <div class="slides">
+            <div class="slide">
+              <video
+                src="videos/tennis1.mp4"
+                controls
+                autoplay
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+              <div class="caption"><span class="cap-label">Piece 1</span>Toss rises. Chest quiet. Breath waits.</div>
+            </div>
+
+            <div class="slide">
+              <video
+                src="videos/tennis2.mp4"
+                controls
+                autoplay
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+              <div class="caption"><span class="cap-label">Piece 2</span>Second serve rhythm. Smaller pause. Longer exhale through the follow-through.</div>
+            </div>
+          </div>
         </div>
-      </article>
+
+        <div class="dots" data-dots></div>
+      </div>
+    </section>
+
+    <!-- CRICKET -->
+    <section class="card" id="cricket" style="margin-top:22px;">
+      <div class="sectionHead">
+        <h2>Cricket Shot</h2>
+        <div class="hint">Swipe · 2 pieces</div>
+      </div>
+
+      <div class="blurb">
+        <p>This clip emphasizes the poise and stillness of the batter before the shot is played. In that quiet moment, steady breathing centers the body and sharpens focus. As the bat moves, breath supports balance and control, linking calm preparation to decisive action.</p>
+      </div>
+
+      <div class="carousel" data-carousel>
+        <div class="stage">
+          <button class="navBtn prev" data-prev aria-label="Previous">◀</button>
+          <button class="navBtn next" data-next aria-label="Next">▶</button>
+
+          <div class="slides">
+            <div class="slide">
+              <video
+                src="videos/cricket1.mp4"
+                controls
+                autoplay
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+              <div class="caption"><span class="cap-label">Piece 1</span>Stillness first. Breath steady. Then the hands go.</div>
+            </div>
+
+            <div class="slide">
+              <video
+                src="videos/cricket2.mp4"
+                controls
+                autoplay
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+              <div class="caption"><span class="cap-label">Piece 2</span>Contact lands. Exhale follows the bat through.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dots" data-dots></div>
+      </div>
+    </section>
+
+    <!-- FOOTBALL -->
+    <section class="card" id="football" style="margin-top:22px;">
+      <div class="sectionHead">
+        <h2>Football Kick</h2>
+        <div class="hint">1 piece</div>
+      </div>
+
+      <div class="blurb">
+        <p>This video highlights how breath and preparation shape a football kick. The planted foot beside the ball creates stability, while a controlled exhale at impact channels power through the strike. Breath carries the motion from stillness into force and follow-through.</p>
+      </div>
+
+      <div class="carousel" data-carousel>
+        <div class="stage">
+          <button class="navBtn prev" data-prev aria-label="Previous">◀</button>
+          <button class="navBtn next" data-next aria-label="Next">▶</button>
+
+          <div class="slides">
+            <div class="slide">
+              <video
+                src="videos/footy1.mp4"
+                controls
+                autoplay
+                loop
+                playsinline
+                preload="metadata"
+              ></video>
+              <div class="caption"><span class="cap-label">Piece 1</span>Plant. Hold. Exhale through the strike.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dots" data-dots></div>
+      </div>
     </section>
   </main>
 
-  <!-- MODAL -->
-  <dialog id="detail">
-    <div class="m-head">
-      <h3 style="margin:0">Exhibit</h3>
-      <button class="close" onclick="detail.close()">Close</button>
-    </div>
-    <div class="m-body">
-      <div class="media" id="mediaSlot">Drop video here later (16:9)</div>
-      <p id="lead">Short continuation text goes here. We’ll replace with the athlete’s reflection and breathing notes for the full piece.</p>
-    </div>
-  </dialog>
-
   <script>
-    const detail = document.getElementById('detail');
-    const lead = document.getElementById('lead');
-    const slot = document.getElementById('mediaSlot');
+    // Carousel + video behavior
+    // - Dots + arrows for each sport
+    // - Autoplay is requested, but browsers may block audio autoplay
+    // - We keep controls visible so your teacher can enable volume easily
+    // - IntersectionObserver tries to play when scrolled into view and pauses when out
 
-    document.querySelectorAll('[data-open]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const card = e.target.closest('.tile');
-        const title = card.dataset.exhibit;
-        detail.querySelector('.m-head h3').textContent = title;
+    function setupCarousel(root){
+      const slidesWrap = root.querySelector('.slides');
+      const slides = Array.from(root.querySelectorAll('.slide'));
+      const prevBtn = root.querySelector('[data-prev]');
+      const nextBtn = root.querySelector('[data-next]');
+      const dotsWrap = root.querySelector('[data-dots]');
 
-        // use full paragraph from preview for the modal
-        const previewP = card.querySelector('.caption p.preview');
-        const fullText = (previewP && (previewP.dataset.full || previewP.textContent)) || '';
-        lead.textContent = fullText;
+      let idx = 0;
 
-        // media slot
-        slot.innerHTML = '';
-        if (title.toLowerCase().includes('cricket')) {
-          const img = document.createElement('img');
-          img.src = 'images/cricket_motion.JPEG';
-          img.alt = 'Cricket motion — temporary still';
-          img.style.width = '100%';
-          img.style.height = 'auto';
-          img.style.borderRadius = '12px';
-          slot.appendChild(img);
-        } else if (title.toLowerCase().includes('tennis')) {
-          const img = document.createElement('img');
-          img.src = 'images/tennis_motion.jpg';
-          img.alt = 'Tennis motion — temporary still';
-          img.style.width = '100%';
-          img.style.height = 'auto';
-          img.style.borderRadius = '12px';
-          slot.appendChild(img);
-        } else {
-          slot.textContent = 'Video placeholder (16:9)';
-        }
-
-        detail.showModal();
+      // Build dots
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dotBtn' + (i===0 ? ' active' : '');
+        b.setAttribute('aria-label', `Go to slide ${i+1}`);
+        b.addEventListener('click', () => go(i));
+        dotsWrap.appendChild(b);
       });
-    });
+
+      function syncButtons(){
+        prevBtn.disabled = (idx === 0);
+        nextBtn.disabled = (idx === slides.length - 1);
+        dotsWrap.querySelectorAll('.dotBtn').forEach((d, i) => {
+          d.classList.toggle('active', i === idx);
+        });
+      }
+
+      function go(i){
+        idx = Math.max(0, Math.min(slides.length - 1, i));
+        slidesWrap.style.transform = `translateX(${-idx * 100}%)`;
+        syncButtons();
+
+        // pause other videos in this carousel; try play current
+        slides.forEach((s, j) => {
+          const v = s.querySelector('video');
+          if (!v) return;
+          if (j !== idx) v.pause();
+        });
+        const activeVideo = slides[idx].querySelector('video');
+        if (activeVideo) {
+          const p = activeVideo.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        }
+      }
+
+      prevBtn.addEventListener('click', () => go(idx - 1));
+      nextBtn.addEventListener('click', () => go(idx + 1));
+      syncButtons();
+
+      // Swipe (touch)
+      let startX = 0, isDown = false;
+      root.querySelector('.stage').addEventListener('pointerdown', (e) => {
+        isDown = true; startX = e.clientX;
+      });
+      window.addEventListener('pointerup', (e) => {
+        if (!isDown) return;
+        isDown = false;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 40) go(idx + (dx < 0 ? 1 : -1));
+      });
+
+      // Scroll play/pause
+      const videos = Array.from(root.querySelectorAll('video'));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          const v = e.target;
+          if (e.isIntersecting) {
+            // try play if it's the active slide
+            const parentSlide = v.closest('.slide');
+            const slideIndex = slides.indexOf(parentSlide);
+            if (slideIndex === idx) {
+              const p = v.play();
+              if (p && typeof p.catch === 'function') p.catch(() => {});
+            }
+          } else {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.35 });
+
+      videos.forEach(v => io.observe(v));
+
+      // Start on first slide
+      go(0);
+    }
+
+    document.querySelectorAll('[data-carousel]').forEach(setupCarousel);
   </script>
 </body>
 </html>
