@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Breath Behind the Game</title>
+<style>
+  :root{
+    --bg:#0b0f14;
+    --panel:#111823;
+    --ink:#e8f1ee;
+    --muted:#9fb2ab;
+    --accent:#58e2a6;
+    --line:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(60% 80% at 80% 10%, #12202a 0%, transparent 60%),
+      radial-gradient(70% 80% at 10% 90%, #101d27 0%, transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font:16px/1.55 ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:28px 20px 80px}
+
+  header{
+    position:sticky;top:0;z-index:10;
+    background:linear-gradient(180deg, rgba(11,15,20,.92), rgba(11,15,20,.55) 70%, transparent);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line)
+  }
+  header .wrap{padding:14px 20px}
+  h1{margin:0 0 6px;font-size:clamp(24px,4vw,40px);letter-spacing:.2px}
+  .tag{color:var(--muted)}
+
+  .about{
+    margin:18px 0 22px;
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+    border-radius:16px;
+    padding:16px
+  }
+  .about strong{font-weight:800}
+
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+  .card{
+    grid-column:span 12;
+    border:1px solid var(--line);
+    border-radius:18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));
+    box-shadow:0 20px 40px rgba(0,0,0,.35);
+    overflow:hidden;
+  }
+  @media(min-width:900px){ .half{grid-column:span 6} }
+
+  .card-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 16px;border-bottom:1px solid var(--line)
+  }
+  .card-head h2{margin:0;font-size:22px}
+  .hint{color:var(--muted);font-size:14px}
+
+  .blurb{
+    padding:14px 16px 0;
+    color:var(--muted);
+  }
+  .blurb strong{color:var(--ink);font-weight:750}
+
+  .quote{
+    margin:10px 16px 0;
+    padding:10px 12px;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:rgba(17,24,35,.55);
+    color:rgba(232,241,238,.92);
+    font-size:14px;
+  }
+  .quote span{color:var(--accent);font-weight:700}
+
+  /* Carousel */
+  .carousel{position:relative;margin-top:14px}
+  .rail{
+    display:flex; gap:12px; overflow:hidden; scroll-behavior:smooth;
+    padding:14px; scroll-snap-type:x mandatory;
+    cursor:grab;
+  }
+  .rail:active{cursor:grabbing}
+  .slide{
+    min-width:100%; scroll-snap-align:center;
+    border-radius:14px; overflow:hidden;
+    background:#0d141a; border:1px solid var(--line);
+    position:relative;
+  }
+  .slide video{
+    width:100%;
+    height:auto;
+    display:block;
+    background:#000;
+  }
+
+  .overlay{
+    position:absolute; left:12px; bottom:12px; max-width:min(620px, 90%);
+    background:rgba(17,24,35,.72);
+    border:1px solid var(--line);
+    backdrop-filter:blur(4px);
+    border-radius:12px;
+    padding:10px 12px;
+    font-size:14px;
+  }
+  .overlay .label{
+    display:inline-block;
+    font-size:12px;
+    color:rgba(232,241,238,.85);
+    margin-bottom:6px;
+    opacity:.9;
+  }
+
+  .nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    display:flex; width:100%;
+    justify-content:space-between;
+    pointer-events:none;
+  }
+  .nav button{
+    pointer-events:auto;
+    appearance:none;
+    border:1px solid var(--line);
+    background:rgba(17,24,35,.82);
+    color:var(--ink);
+    border-radius:999px;
+    padding:8px 11px;
+    cursor:pointer;
+  }
+  .dots{display:flex; gap:8px; justify-content:center; padding:8px 0 14px}
+  .dot{width:8px;height:8px;border-radius:999px;background:#2a3742;border:1px solid var(--line)}
+  .dot.active{background:var(--accent); box-shadow:0 0 12px var(--accent)}
+
+  .pad-bottom{padding-bottom:16px}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <h1>The Breath Behind the Game</h1>
+    <div class="tag">Where breath meets movement. Slow moments, real sound, athlete reflections.</div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="about">
+    <p><strong>About the project:</strong> We’re collecting slow motion clips of impact and release across sports, paired with athletes’ words and breathing. Each sport has one or two pieces. Swipe between them and listen for the rhythm.</p>
+  </section>
+
+  <section class="grid">
+    <!-- TENNIS -->
+    <article class="card half" data-sport="tennis">
+      <div class="card-head">
+        <h2>Tennis</h2>
+        <div class="hint">Swipe • 2 pieces</div>
+      </div>
+
+      <div class="blurb">
+        <p><strong>Tennis Serve</strong><br/>
+        This video explores how breath moves with the body through a tennis serve. The inhale lifts and prepares the motion, while the exhale releases power at contact. Breathing shapes the rhythm of the serve, turning force into something controlled and fluid.</p>
+      </div>
+
+      <div class="quote"><span>Athlete:</span> “If I don’t breathe right on the toss, everything feels rushed. One clean inhale and it settles.”</div>
+
+      <div class="carousel">
+        <div class="rail">
+          <div class="slide">
+            <video controls muted autoplay loop preload="metadata" playsinline>
+              <source src="videos/tennis1.mp4" type="video/mp4" />
+            </video>
+            <div class="overlay">
+              <div class="label">Piece 1</div>
+              Inhale on the toss. Hold for a beat. Exhale through contact.
+            </div>
+          </div>
+
+          <div class="slide">
+            <video controls muted autoplay loop preload="metadata" playsinline>
+              <source src="videos/tennis2.mp4" type="video/mp4" />
+            </video>
+            <div class="overlay">
+              <div class="label">Piece 2</div>
+              Second serve rhythm. Smaller pause. Longer exhale through the follow through.
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="prev" aria-label="Previous">◀</button>
+          <button class="next" aria-label="Next">▶</button>
+        </div>
+        <div class="dots"></div>
+      </div>
+
+      <div class="pad-bottom"></div>
+    </article>
+
+    <!-- CRICKET -->
+    <article class="card half" data-sport="cricket">
+      <div class="card-head">
+        <h2>Cricket</h2>
+        <div class="hint">Swipe • 2 pieces</div>
+      </div>
+
+      <div class="blurb">
+        <p><strong>Cricket Shot</strong><br/>
+        This clip emphasizes the poise and stillness of the batter before the shot is played. In that quiet moment, steady breathing centers the body and sharpens focus. As the bat moves, breath supports balance and control, linking calm preparation to decisive action.</p>
+      </div>
+
+      <div class="quote"><span>Athlete:</span> “I’m trying to be calm before it comes. If my breathing is steady, my feet feel steady.”</div>
+
+      <div class="carousel">
+        <div class="rail">
+          <div class="slide">
+            <video controls muted autoplay loop preload="metadata" playsinline>
+              <source src="videos/cricket1.mp4" type="video/mp4" />
+            </video>
+            <div class="overlay">
+              <div class="label">Piece 1</div>
+              Stillness first. Then everything moves at once.
+            </div>
+          </div>
+
+          <div class="slide">
+            <video controls muted autoplay loop preload="metadata" playsinline>
+              <source src="videos/cricket2.mp4" type="video/mp4" />
+            </video>
+            <div class="overlay">
+              <div class="label">Piece 2</div>
+              Breath holds you steady. The swing is just the release.
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="prev" aria-label="Previous">◀</button>
+          <button class="next" aria-label="Next">▶</button>
+        </div>
+        <div class="dots"></div>
+      </div>
+
+      <div class="pad-bottom"></div>
+    </article>
+
+    <!-- FOOTBALL -->
+    <article class="card" data-sport="football">
+      <div class="card-head">
+        <h2>Football</h2>
+        <div class="hint">1 piece</div>
+      </div>
+
+      <div class="blurb">
+        <p><strong>Football Kick</strong><br/>
+        This video highlights how breath and preparation shape a football kick. The planted foot beside the ball creates stability, while a controlled exhale at impact channels power through the strike. Breath carries the motion from stillness into force and follow-through.</p>
+      </div>
+
+      <div class="quote"><span>Athlete:</span> “Plant. Stay loose. Breathe out on impact. If I hold my breath, the kick feels stiff.”</div>
+
+      <div class="carousel">
+        <div class="rail">
+          <div class="slide">
+            <video controls muted autoplay loop preload="metadata" playsinline>
+              <source src="videos/footy1.mp4" type="video/mp4" />
+            </video>
+            <div class="overlay">
+              <div class="label">Piece 1</div>
+              Plant foot. Quiet breath. Exhale on impact.
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="prev" aria-label="Previous">◀</button>
+          <button class="next" aria-label="Next">▶</button>
+        </div>
+        <div class="dots"></div>
+      </div>
+
+      <div class="pad-bottom"></div>
+    </article>
+  </section>
+</main>
+
+<script>
+  // Carousel: arrows, dots, drag, trackpad scroll
+  document.querySelectorAll('.carousel').forEach((car) => {
+    const rail = car.querySelector('.rail');
+    const slides = [...car.querySelectorAll('.slide')];
+    const prev = car.querySelector('.prev');
+    const next = car.querySelector('.next');
+    const dotsWrap = car.querySelector('.dots');
+
+    let idx = 0, isDown=false, startX=0, startScroll=0;
+
+    // If only one slide, hide arrows + dots area
+    if (slides.length <= 1) {
+      car.querySelector('.nav').style.display = 'none';
+      dotsWrap.style.display = 'none';
+      return;
+    }
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i===0 ? ' active' : '');
+      d.dataset.index = i;
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    });
+    const dots = [...dotsWrap.children];
+
+    const update = () => dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+
+    const goTo = (i) => {
+      idx = Math.max(0, Math.min(slides.length-1, i));
+      rail.scrollTo({left: idx * rail.clientWidth, behavior:'smooth'});
+      update();
+    };
+
+    const nextSlide = () => goTo(idx+1);
+    const prevSlide = () => goTo(idx-1);
+
+    next.addEventListener('click', nextSlide);
+    prev.addEventListener('click', prevSlide);
+
+    const onDown = (x) => { isDown=true; startX=x; startScroll=rail.scrollLeft; };
+    const onMove = (x) => { if(!isDown) return; rail.scrollLeft = startScroll - (x - startX); };
+    const onUp = () => {
+      if(!isDown) return;
+      isDown=false;
+      idx = Math.round(rail.scrollLeft / rail.clientWidth);
+      goTo(idx);
+    };
+
+    rail.addEventListener('mousedown', e => onDown(e.clientX));
+    window.addEventListener('mousemove', e => onMove(e.clientX));
+    window.addEventListener('mouseup', onUp);
+
+    rail.addEventListener('touchstart', e => onDown(e.touches[0].clientX), {passive:true});
+    rail.addEventListener('touchmove', e => onMove(e.touches[0].clientX), {passive:true});
+    rail.addEventListener('touchend', onUp);
+
+    rail.addEventListener('scroll', () => {
+      const i = Math.round(rail.scrollLeft / rail.clientWidth);
+      if (i !== idx) { idx = i; update(); }
+    }, {passive:true});
+
+    window.addEventListener('resize', () => goTo(idx), {passive:true});
+  });
+</script>
+</body>
+</html>
+
